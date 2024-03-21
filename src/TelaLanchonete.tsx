@@ -10,7 +10,7 @@ interface Item {
 }
 
 function linkExterno(){
-    Linking.openURL('');
+    Linking.openURL('https://www.twitch.tv/tck10');
 }
 
 const dados: Item[] = [
@@ -77,7 +77,7 @@ function TelaLanchonete(): React.JSX.Element {
                     />
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.messageIcon}>
+                <TouchableOpacity style={styles.messageIcon}onPress={linkExterno}>
                 <Image
                         source={require('./assets/images/message.png')}
                         style={styles.footerIcon}
