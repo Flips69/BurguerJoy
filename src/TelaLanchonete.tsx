@@ -99,7 +99,8 @@ const styles = StyleSheet.create({
         borderColor: '#e0aaff'
     },
     header: {
-        
+        borderBottomLeftRadius: 10,
+        borderBottomRightRadius: 10,
         alignItems: 'center',
         
     },
