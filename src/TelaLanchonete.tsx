@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, Image, ImageBackground, Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 interface Item {
     id: string;
@@ -7,6 +7,10 @@ interface Item {
     preco: string;
     listaIngrediente: string;
     image: any;
+}
+
+function linkExterno(){
+    Linking.openURL('');
 }
 
 const dados: Item[] = [
@@ -69,6 +73,13 @@ function TelaLanchonete(): React.JSX.Element {
                 <TouchableOpacity>
                 <Image
                         source={require('./assets/images/perfil.png')}
+                        style={styles.footerIcon}
+                    />
+                </TouchableOpacity>
+
+                <TouchableOpacity style={styles.messageIcon}>
+                <Image
+                        source={require('./assets/images/message.png')}
                         style={styles.footerIcon}
                     />
                 </TouchableOpacity>
@@ -152,6 +163,15 @@ const styles = StyleSheet.create({
         width: 500,
         height: 45,
         alignItems: 'center'
+    },
+    messageIcon: {
+        position: 'absolute',
+        width: 40,
+        height: 140,
+        alignItems: 'center',
+        justifyContent: 'center',
+        right: 30,
+        bottom: 30,
     }
 });
 
