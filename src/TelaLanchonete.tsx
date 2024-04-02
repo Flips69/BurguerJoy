@@ -10,7 +10,7 @@ interface Item {
 }
 
 function linkExterno(){
-    Linking.openURL('https://www.twitch.tv/tck10');
+    Linking.openURL('https://github.com/Flips69/BurguerJoy');
 }
 
 const dados: Item[] = [
