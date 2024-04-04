@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { StatusBar, StyleSheet, TextInput, TouchableOpacity } from "react-native";
 import { Image, Text, View } from "react-native";
-import { launchCamera } from "react-native-image-picker";
+import { launchCamera, launchImageLibrary } from "react-native-image-picker";
+import axios from 'axios';
 
 const CadastroProduto: React.FC = () => {
 
@@ -12,7 +13,26 @@ const CadastroProduto: React.FC = () => {
     const [imagem, setImagem] = useState<any>('');
 
     const cadastrarProduto = async () => {
+        try{
+        const formData = new FormData();
+        formData.append('nome', nome);
+        formData.append('preco', preco);
+        formData.append('ingredientes', ingredientes);
+        formData.append('imagem', {
+            uri:imagem,
+            type: 'image/jpeg',
+            name: new Date() + '.jpg'
+        });
 
+        const response = await axios.post('http://10.137.11.209:8000/api/produtos', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+
+    }catch(error) {
+        console.log(error);
+    }
     }
 
     const abrirCamera = () => {
@@ -37,6 +57,27 @@ const CadastroProduto: React.FC = () => {
             }
         });
     }
+
+    const selecionarImagem = () => {
+        const options = {
+            mediaType: 'phto',
+            includeBase64: false, 
+            maxHeight: 2000,
+            maxWidht: 2000
+        };
+
+        launchImageLibrary(options, (response)=>{
+            if(response.didCancel){
+                console.log('cancelado pelo usuário');
+            } else if(response.error) {
+                console.log('erro ao abrir a galeria');
+            } else {
+                let imageUri = response.uir || response.assets?.[0]?.uri;
+                setImagem(imageUri);
+            }
+        });
+    }
+
 
     return (
         <View style={styles.container}>
@@ -71,7 +112,7 @@ const CadastroProduto: React.FC = () => {
                         {imagem ? <Image source={{uri:imagem}} style={styles.imagemSelecionado} /> : null}
                     </View>
 
-                    <TouchableOpacity style={styles.imageButton}>
+                    <TouchableOpacity style={styles.imageButton} onPress={selecionarImagem}>
                         <Text style={styles.imageButtonText}>Selecionar Imagem</Text>
                     </TouchableOpacity>
 
@@ -79,7 +120,7 @@ const CadastroProduto: React.FC = () => {
                         <Text style={styles.imageButtonText}>Tirar Foto</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.imageButton}>
+                    <TouchableOpacity style={styles.imageButton} onPress={cadastrarProduto}>
                         <Text style={styles.imageButtonText}>Cadastrar Produto</Text>
                     </TouchableOpacity>
 
