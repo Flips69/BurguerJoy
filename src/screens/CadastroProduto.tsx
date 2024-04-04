@@ -60,7 +60,7 @@ const CadastroProduto: React.FC = () => {
 
     const selecionarImagem = () => {
         const options = {
-            mediaType: 'phto',
+            mediaType: 'photo',
             includeBase64: false, 
             maxHeight: 2000,
             maxWidht: 2000
@@ -72,7 +72,7 @@ const CadastroProduto: React.FC = () => {
             } else if(response.error) {
                 console.log('erro ao abrir a galeria');
             } else {
-                let imageUri = response.uir || response.assets?.[0]?.uri;
+                let imageUri = response.uri || response.assets?.[0]?.uri;
                 setImagem(imageUri);
             }
         });
@@ -134,11 +134,13 @@ const styles = StyleSheet.create({
 
     container: {
         flex: 1
-    }, header: {
+    }, 
+    header: {
         backgroundColor: 'red',
         paddingVertical: 10,
         alignItems: 'center'
-    }, headerText: {
+    }, 
+    headerText: {
         fontSize: 20,
         fontWeight: 'bold',
         color: 'white'
