@@ -37,6 +37,7 @@ const renderItem = ({ item }: {item:Item} ) => (
         <Image style={styles.image} source={item.image}/>
         <Text style={styles.itemText}>{ item.preco }</Text>
         <Text style={styles.itemText}>{ item.listaIngrediente }</Text>
+        <TouchableOpacity><Image source={require('./assets/images/adicionar.png')} style={styles.add}></Image></TouchableOpacity>
         
     </TouchableOpacity>
 )
@@ -49,6 +50,8 @@ function TelaLanchonete(): React.JSX.Element {
                 <Text style={styles.headerText}>❀ JoyBurguer ❀</Text>
                 </ImageBackground>
             </View>
+
+          
             <FlatList 
                 showsVerticalScrollIndicator={false}
                 data={dados}
@@ -172,6 +175,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         right: 30,
         bottom: 30,
+    },
+    add: {
+        width: 40,
+        height: 40,
+        marginStart: 138.5,
+        marginTop: 10
+        
     }
 });
 

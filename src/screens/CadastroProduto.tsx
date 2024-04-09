@@ -91,12 +91,6 @@ const CadastroProduto: React.FC = () => {
                     value={nome}
                     onChangeText={setNome} />
 
-
-                {/*<TextInput style={styles.input}
-                    placeholder="Preço"
-                    value={preco}
-    onChangeText={setPreco} />*/}
-
                 <TextInput style={styles.input}
                     placeholder="Nome do Produto"
                     value={preco}
