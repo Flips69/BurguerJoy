@@ -7,8 +7,8 @@ function App(): React.JSX.Element {
   return(
     //<TelaLanchonete />
     //<Pedidos />
-    //<CadastroProduto />
-    <CadastroCliente />
+    <CadastroProduto />
+    //<CadastroCliente />
   );
 }
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StatusBar, StyleSheet, TextInput, TouchableOpacity } from "react-native";
+import { ImageBackground, ScrollView, StyleSheet, TextInput, TouchableOpacity } from "react-native";
 import { Image, Text, View } from "react-native";
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
 import axios from 'axios';
@@ -81,23 +81,29 @@ const CadastroProduto: React.FC = () => {
 
     return (
         <View style={styles.container}>
-            <StatusBar backgroundColor={'red'} barStyle="light-content" />
             <View style={styles.header}>
-                <Text style={styles.headerText}>Top Food</Text>
+            <ImageBackground style={styles.headerGradient} source={require('../assets/images/Gradient.png')}>
+                <Text style={styles.headerText}>Cadastro ❀ Produtos</Text>
+            </ImageBackground>
             </View>
+
+            <ScrollView>
             <View style={styles.form}>
                 <TextInput style={styles.input}
                     placeholder="Nome do Produto"
+                    placeholderTextColor={'#e0aaff'}
                     value={nome}
                     onChangeText={setNome} />
 
                 <TextInput style={styles.input}
-                    placeholder="Nome do Produto"
+                    placeholder="Preço"
+                    placeholderTextColor={'#e0aaff'}
                     value={preco}
                     onChangeText={setPreco} />
 
                 <TextInput style={styles.input}
                     placeholder="Ingredientes"
+                    placeholderTextColor={'#e0aaff'}
                     value={ingredientes}
                     onChangeText={setIngredientes}
                     multiline />
@@ -120,6 +126,38 @@ const CadastroProduto: React.FC = () => {
 
             </View>
 
+            </ScrollView>
+            <View style={styles.footer}>
+                <TouchableOpacity>
+                <Image
+                        source={require('../assets/images/home.png')}
+                        style={styles.footerIcon}
+                    />
+                </TouchableOpacity>
+
+                <TouchableOpacity>
+                <Image
+                        source={require('../assets/images/pedidos.png')}
+                        style={styles.footerIcon}
+                    />
+                </TouchableOpacity>
+
+                <TouchableOpacity>
+                <Image
+                        source={require('../assets/images/perfil.png')}
+                        style={styles.footerIcon}
+                    />
+                </TouchableOpacity>
+
+
+                <TouchableOpacity>
+                <Image
+                        source={require('../assets/images/menu.png')}
+                        style={styles.footerIcon}
+                    />
+                </TouchableOpacity>
+            </View>
+
         </View>
     )
 }
@@ -127,33 +165,41 @@ const CadastroProduto: React.FC = () => {
 const styles = StyleSheet.create({
 
     container: {
+        backgroundColor: '#10002b',
         flex: 1
     }, 
     header: {
-        backgroundColor: 'red',
-        paddingVertical: 10,
-        alignItems: 'center'
+        borderBottomLeftRadius: 10,
+        borderBottomRightRadius: 10,
+        alignItems: 'center',
     }, 
     headerText: {
-        fontSize: 20,
+        fontSize: 30,
         fontWeight: 'bold',
-        color: 'white'
+        color: '#e0aaff',
+        fontFamily: 'serif',
     },
     form: {
-        padding: 10,
-        backgroundColor: '#f0f0f0',
-        marginBottom: 10
+        backgroundColor: '#240046',
+        padding: 15,
+        marginVertical: 8,
+        marginHorizontal: 16,
+        borderRadius: 10,
+        borderWidth: 1.5,
+        borderColor: '#e0aaff',
+        marginTop: 90
     },
     input: {
         height: 40,
-        borderColor: 'grey',
-        borderWidth: 1,
+        borderColor: '#ffd6ff',
+        borderBottomWidth: 1,
         marginBottom: 10,
         paddingHorizontal: 10,
-        borderRadius: 10
+        borderRadius: 10,
+        color: '#e0aaff'
     },
     imageButton: {
-        backgroundColor: 'red',
+        backgroundColor: '#9d4edd',
         padding: 10,
         borderRadius: 5,
         alignItems: 'center',
@@ -161,8 +207,10 @@ const styles = StyleSheet.create({
 
     },
     imageButtonText: {
-        color: 'white',
-        fontWeight: 'bold'
+        color: '#e0aaff',
+        fontWeight: 'bold',
+        fontSize: 14.69,
+        fontFamily: 'serif'
     },
     imagemSelecionado: {
         width: 200,
@@ -183,7 +231,25 @@ const styles = StyleSheet.create({
     buttonText: {
         color: 'white',
         fontWeight: 'bold'
-    }
+    },
+    headerGradient: {
+        width: 500,
+        height: 45,
+        alignItems: 'center'
+    },footer: {
+        borderTopWidth: 0.1,
+        backgroundColor: '#9d4edd',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        paddingVertical: 6,
+        borderTopRightRadius: 10,
+        borderTopLeftRadius: 10,
+    },
+    footerIcon: {
+            width: 30,
+            height: 30,
+    },
 
 
 

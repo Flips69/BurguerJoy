@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ImageBackground, Linking, ScrollView, StatusBar, StyleSheet, TextInput, TouchableOpacity } from "react-native";
+import { ImageBackground, ScrollView, StyleSheet, TextInput, TouchableOpacity } from "react-native";
 import { Image, Text, View } from "react-native";
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
 import axios from 'axios';
@@ -15,7 +15,7 @@ const CadastroCliente: React.FC = () => {
     const [password, setPassword] = useState<string>('');
     const [imagem, setImagem] = useState<any>('');
 
-    const cadastrarClientes = async () => {
+    const CadastrarClientes = async () => {
         try{
         const formData = new FormData();
         formData.append('nome', nome);
@@ -30,7 +30,7 @@ const CadastroCliente: React.FC = () => {
             name: new Date() + '.jpg'
         });
 
-        const response = await axios.post('http://10.137.11.209:8000/api/cadastrar/cliente', formData, {
+        const response = await axios.post('http://10.137.11.209:8000/api/cliente', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -145,7 +145,7 @@ const CadastroCliente: React.FC = () => {
                         <Text style={styles.imageButtonText}>Tirar Foto</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.imageButton} onPress={cadastrarClientes}>
+                    <TouchableOpacity style={styles.imageButton} onPress={CadastrarClientes}>
                         <Text style={styles.imageButtonText}>Cadastrar</Text>
                     </TouchableOpacity>
                    
@@ -273,7 +273,8 @@ const styles = StyleSheet.create({
         paddingVertical: 6,
         borderTopRightRadius: 10,
         borderTopLeftRadius: 10,
-       
+
+        
         
     },
     footerIcon: {
