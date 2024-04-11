@@ -51,13 +51,14 @@ function TelaLanchonete(): React.JSX.Element {
                 </ImageBackground>
             </View>
 
-          
+            
             <FlatList 
                 showsVerticalScrollIndicator={false}
                 data={dados}
                 renderItem={renderItem}
                 keyExtractor={(item) => item.id}
             />
+                           
             <View style={styles.footer}>
                 <TouchableOpacity>
                 <Image
@@ -182,7 +183,11 @@ const styles = StyleSheet.create({
         marginStart: 138.5,
         marginTop: 10
         
-    }
+    },
+    fotterGradient: {
+        width: 500,
+        alignItems: 'center'
+    },
 });
 
 export default TelaLanchonete;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ImageBackground, ScrollView, StyleSheet, TextInput, TouchableOpacity } from "react-native";
+import { ImageBackground, ScrollView, StatusBar, StyleSheet, TextInput, TouchableOpacity } from "react-native";
 import { Image, Text, View } from "react-native";
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
 import axios from 'axios';
@@ -15,7 +15,7 @@ const CadastroCliente: React.FC = () => {
     const [password, setPassword] = useState<string>('');
     const [imagem, setImagem] = useState<any>('');
 
-    const CadastrarClientes = async () => {
+    const cadastrarClientes = async () => {
         try{
         const formData = new FormData();
         formData.append('nome', nome);
@@ -30,7 +30,7 @@ const CadastroCliente: React.FC = () => {
             name: new Date() + '.jpg'
         });
 
-        const response = await axios.post('http://10.137.11.209:8000/api/cliente', formData, {
+        const response = await axios.post('http://10.137.11.210:8000/api/cliente/store', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -87,6 +87,10 @@ const CadastroCliente: React.FC = () => {
 
     return (
         <View style={styles.container}>
+
+            <View style={styles.container}>
+                <StatusBar hidden    />
+            </View>
             
             <View style={styles.header}>
             <ImageBackground style={styles.headerGradient} source={require('../assets/images/Gradient.png')}>
@@ -95,7 +99,9 @@ const CadastroCliente: React.FC = () => {
             </View>
 
             <ScrollView>
+                
             <View style={styles.form}>
+            
                 <TextInput style={styles.input}
                     placeholder="Nome"
                     placeholderTextColor={'#e0aaff'}
@@ -145,45 +151,15 @@ const CadastroCliente: React.FC = () => {
                         <Text style={styles.imageButtonText}>Tirar Foto</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.imageButton} onPress={CadastrarClientes}>
+                    <TouchableOpacity style={styles.imageButton} onPress={cadastrarClientes}>
                         <Text style={styles.imageButtonText}>Cadastrar</Text>
                     </TouchableOpacity>
                    
-
+                    
             </View>
-            
             
             </ScrollView>
-            <View style={styles.footer}>
-                <TouchableOpacity>
-                <Image
-                        source={require('../assets/images/home.png')}
-                        style={styles.footerIcon}
-                    />
-                </TouchableOpacity>
-
-                <TouchableOpacity>
-                <Image
-                        source={require('../assets/images/pedidos.png')}
-                        style={styles.footerIcon}
-                    />
-                </TouchableOpacity>
-
-                <TouchableOpacity>
-                <Image
-                        source={require('../assets/images/perfil.png')}
-                        style={styles.footerIcon}
-                    />
-                </TouchableOpacity>
-
-
-                <TouchableOpacity>
-                <Image
-                        source={require('../assets/images/menu.png')}
-                        style={styles.footerIcon}
-                    />
-                </TouchableOpacity>
-            </View>
+           
         </View>
     )
 }
@@ -243,8 +219,10 @@ const styles = StyleSheet.create({
         width: 200,
         height: 200,
         resizeMode: 'cover',
-        borderRadius: 5,
-        marginBottom: 10
+        borderRadius: 100,
+        marginBottom: 10,
+        borderWidth: 3,
+        borderColor: '#e0aaff'
     },
     alinhamentoImagensSelecionada: {
         alignItems: 'center',
