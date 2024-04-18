@@ -251,9 +251,6 @@ const styles = StyleSheet.create({
         paddingVertical: 6,
         borderTopRightRadius: 10,
         borderTopLeftRadius: 10,
-
-        
-        
     },
     footerIcon: {
             width: 30,

@@ -7,7 +7,7 @@ interface Produto {
     nome: string;
     preco: string;
     ingredientes: string;
-    //image: any;
+    image: string;
 }
 
 function linkExterno(){
@@ -17,7 +17,7 @@ function linkExterno(){
 const renderItem = ({ item }: {item:Produto} ) => (
     <TouchableOpacity style={ styles.item }>
         <Text style={[styles.itemText, styles.itemTextTitle]}>{ item.nome }</Text>
-        {/*<Image source={item.image} style={styles.image} />*/}
+        <Image source={ item.image ? {uri:item.image } : require('./assets/images/burguer1.png')} style={styles.image}/>
         <Text style={styles.itemText}>{ item.preco }</Text>
         <Text style={styles.itemText}>{ item.ingredientes }</Text>
        { <TouchableOpacity><Image source={require('./assets/images/adicionar.png')} style={styles.add}></Image></TouchableOpacity>}
@@ -40,7 +40,7 @@ function TelaLanchonete(): React.JSX.Element {
             console.log(response.data)
             if (response.status === 200) {
                 setProdutos(response.data); 
-                
+                console.log(response.data)
             }
             
         } catch (error) {
