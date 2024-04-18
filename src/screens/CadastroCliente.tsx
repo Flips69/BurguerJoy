@@ -30,12 +30,11 @@ const CadastroCliente: React.FC = () => {
             name: new Date() + '.jpg'
         });
 
-        const response = await axios.post('http://10.137.11.210:8000/api/cliente/store', formData, {
+        const response = await axios.post('http://10.137.11.209:8000/api/cliente/store', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
         });
-
     }catch(error) {
         console.log(error);
     }
