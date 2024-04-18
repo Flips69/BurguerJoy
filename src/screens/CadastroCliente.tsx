@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ImageBackground, ScrollView, StatusBar, StyleSheet, TextInput, TouchableOpacity } from "react-native";
+import { ImageBackground, ScrollView, StyleSheet, TextInput, TouchableOpacity } from "react-native";
 import { Image, Text, View } from "react-native";
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
 import axios from 'axios';
@@ -88,7 +88,7 @@ const CadastroCliente: React.FC = () => {
         <View style={styles.container}>
 
             <View style={styles.container}>
-                <StatusBar hidden    />
+                
             </View>
             
             <View style={styles.header}>
@@ -173,6 +173,7 @@ const styles = StyleSheet.create({
         borderBottomLeftRadius: 10,
         borderBottomRightRadius: 10,
         alignItems: 'center',
+        
     }, 
     headerText: {
         fontSize: 30,
