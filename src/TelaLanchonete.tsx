@@ -6,7 +6,7 @@ interface Produto {
     id: string;
     nome: string;
     preco: string;
-    listaIngrediente: string;
+    ingredientes: string;
     //image: any;
 }
 
@@ -17,9 +17,10 @@ function linkExterno(){
 const renderItem = ({ item }: {item:Produto} ) => (
     <TouchableOpacity style={ styles.item }>
         <Text style={[styles.itemText, styles.itemTextTitle]}>{ item.nome }</Text>
+        {/*<Image source={item.image} style={styles.image} />*/}
         <Text style={styles.itemText}>{ item.preco }</Text>
-        <Text style={styles.itemText}>{ item.listaIngrediente }</Text>
-       {/* <TouchableOpacity><Image source={require('./assets/images/adicionar.png')} style={styles.add}></Image></TouchableOpacity>*/}
+        <Text style={styles.itemText}>{ item.ingredientes }</Text>
+       { <TouchableOpacity><Image source={require('./assets/images/adicionar.png')} style={styles.add}></Image></TouchableOpacity>}
         
     </TouchableOpacity>
 )
@@ -38,10 +39,10 @@ function TelaLanchonete(): React.JSX.Element {
 
             console.log(response.data)
             if (response.status === 200) {
-                setProdutos(response.data); // Set the state with the correct data
-                // console.log(response.data);
+                setProdutos(response.data); 
+                
             }
-            // console.log(response);
+            
         } catch (error) {
             console.log(error);
         }
@@ -170,6 +171,7 @@ const styles = StyleSheet.create({
         width: 500,
         height: 45,
         alignItems: 'center'
+        
     },
     messageIcon: {
         position: 'absolute',

@@ -5,10 +5,10 @@ import CadastroCliente from './src/screens/CadastroCliente';
 
 function App(): React.JSX.Element {
   return(
-    <TelaLanchonete />
+    //<TelaLanchonete />
     //<Pedidos />
     //<CadastroProduto />
-    //<CadastroCliente />
+    <CadastroCliente />
   );
 }
 
