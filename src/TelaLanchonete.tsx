@@ -1,6 +1,8 @@
+import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { FlatList, Image, ImageBackground, Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+
 
 interface Produto {
     id: string;
@@ -25,7 +27,7 @@ const renderItem = ({ item }: {item:Produto} ) => (
     </TouchableOpacity>
 )
 
-function TelaLanchonete(): React.JSX.Element {
+function TelaLanchonete(): React.ReactElement {
     const [produtos, setProdutos] = useState<Produto[]>([]);
 
     useEffect(() => {
@@ -47,6 +49,9 @@ function TelaLanchonete(): React.JSX.Element {
             console.log(error);
         }
     }
+
+    const navigation = useNavigation();
+
     return(
         <View style={styles.container}>
             <View style={styles.header}>
@@ -70,28 +75,24 @@ function TelaLanchonete(): React.JSX.Element {
                         style={styles.footerIcon}
                     />
                 </TouchableOpacity>
-
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('TelaLanchonete') }>
                 <Image
                         source={require('./assets/images/pedidos.png')}
                         style={styles.footerIcon}
                     />
                 </TouchableOpacity>
-
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('CadastroProduto') }>
                 <Image
                         source={require('./assets/images/perfil.png')}
                         style={styles.footerIcon}
                     />
                 </TouchableOpacity>
-
                 <TouchableOpacity style={styles.messageIcon}onPress={linkExterno}>
                 <Image
                         source={require('./assets/images/message.png')}
                         style={styles.footerIcon}
                     />
                 </TouchableOpacity>
-
                 <TouchableOpacity>
                 <Image
                         source={require('./assets/images/menu.png')}
